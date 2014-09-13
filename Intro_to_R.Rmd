@@ -1,0 +1,138 @@
+---
+title: "Introduction to R"
+output: html_document
+---
+
+#The Basics#
+
+R is a piece of software that you control via its statistical programming language. It is extremely powerful and as such is now widely used for academic research as well as in the commercial sector not least by companies such as Google and Facebook. Unlike software such as Excel or SPSS the user has to type commands to get it to execute tasks such as loading in a dataset or performing a calculation. The biggest advantage of this approach is that you can build up a document, or script, that provides a record of what you have done and enables to easy repetition of tasks. Once you get the hang of it, this approach makes for much more efficient data analysis (we promise!), but it can be hugely frustrating to start with as you will generate lots of error messages. Be patient and things will become easier with practice. 
+
+Need to add a bit about the R interface and command line etc.
+
+At its absolute simplest R is a calculator. If you type
+
+```{r, echo=FALSE}
+5 +10
+```
+
+in the command line window, it will give you an answer (after every line you need to hit enter to *execute* the code. Where R differs is that you can assign numbers names. These become *objects* in R and they are a really important concept. For example:
+
+```{r}
+a<-5
+b<-10
+```
+
+The "<-" symbol is used to *assign* the value to the name, for example we assigned the integer 5 to the object a. To see what each obeject contains you can just type
+
+```{r}
+print(a)
+```
+
+Where the bit in the brackets is the object name. Objects can then be treated in the same way as the numbers they contain. For example:
+
+```{r}
+a*b
+```
+
+Or even used to create new objects:
+
+```{r}
+c<- a*b
+print(c)
+```
+
+The real power of R comes when we can begin to execute *functions* on objects. Until now our objects have been extremely simple integers. It is possible to build up more complex objects. In the first instance we will use the c() function for this. "c" means concatenate and essentially groups things together. 
+
+```{r}
+DOB<- c(1993,1993,1994,1991)
+```
+
+Type print(dob) to see the result. We can now execute some common statistical functions on this object
+
+```{r}
+mean(DOB)
+median(DOB)
+range(DOB)
+```
+
+R can also calculate a whole load of descriptive statistics using the summary() command:
+
+```{r}
+summary(DOB)
+```
+
+The structure of the DOB object - essentially a group of numbers - is known as a *vector* object in R. To build but more complex objects that, for example, resemble a spreadsheet with multiple columns of data it is possible to create a class of object know as a data.frame. This is probably the most commonly used class of object in R. We can create one here by combining two vectors.
+
+```{r}
+Singers<- c("Zain", "Liam", "Harry", "Louis")
+One.Direction<- data.frame(Singers, DOB)
+```
+
+If you type print(One.Direction) you will see our data frame.
+
+```{r}
+print(One.Direction)
+```
+
+<img src="/Users/james/Dropbox/Q-Step/Qstep-R-Intro/One-Direction-One-Direction-Sofa-Poster.jpg" />
+
+##Recap
+
+You have just:
+
+1. Entered your first commands into the R *command line interface*
+2. Created *objects* in R
+3. Calculated a number of descriptive statistics using R *functions*
+3. Created a *vector* of values (the DOB object)
+4. Created a data frame (called One.Direction)
+
+##Tips
+
+1. R is *case sensitive* so you need to make sure that you capitlise everything correctly.
+2. It is important to come up with good names for your objects. In the case of the One.Direction object I used a full-stop to separate the words and capitilisation. It is god practice to keep the object names as short as posssible so I could have gone for OneDirection or one.dir. You cannot start an object name with a number so 1D won't work.
+3. If you press the up arrow in the command line you will be able to edit the previous lines of code you inputted. 
+
+#Next Steps#
+
+In the previous section R may have seemed fairly labour-intensive. We had to enter all our data manually and each line of code had to be written into the command line. Fortunately this isn't really the case. In R Studio look to the top left corner and you will see a plus symbol, click on it and select "R Script". 
+
+<img src="/Users/james/Dropbox/Q-Step/Qstep-R-Intro/new_script.png" />
+
+This should give you a blank document that looks a bit like the command line. The difference is that anything you type here can be saved as a *script* and re-run at a later date. When writing a script it is important to keep notes about what each step is doing. To do this the # symbol is put before any code. This *comments out* that particular line so that R ignores it when the script is run. Type the following into the script:
+
+```
+#This is my first R script
+
+My.Data<- data.frame(0:10, 20:30)
+
+print(My.Data)
+
+```
+
+In the scripting window if you highlight all the code you have written and press the run button on the top on the scritping window you will see that the code is sent to the command line and the comment after the # is ignored.
+
+<img src="/Users/james/Dropbox/Q-Step/Qstep-R-Intro/run_button.png" />
+
+From now on you should type your code in the scripting window and then use the Run button to execute it. If you have an error then edit the line in the script and hit run again. 
+
+The My.Data object is a data frame in need of some sensible column headings. You can add these by typing:
+
+```{r}
+
+names(My.Data)<- c("X", "Y")
+
+#print object to check they were added successfully.
+pritn
+```
+
+
+
+You can also embed plots, for example:
+
+
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
